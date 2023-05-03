@@ -4,140 +4,64 @@ import { ResponsiveFunnel } from "@nivo/funnel";
 import { CButton, CButtonGroup, CCard, CCardBody, CCardHeader, CCol, CHeader, CRow } from '@coreui/react'
 import {SchemeOptions} from './ColorSchemeOptions'
 import Select from "react-select"
+import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Cell, Legend, Label, LabelList } from 'recharts';
+
 
 const NivoFunnel = () => {
-    const [colorScheme, setColorScheme] = useState('spectral')
-    const [vertOrHor, setVertOrHor] = useState('vertical')
 
-    const funnelData = [
-        {
-          "id": "step_sent",
-          "value": 72053,
-          "label": "Sent"
-        },
-        {
-          "id": "step_viewed",
-          "value": 49434,
-          "label": "Viewed"
-        },
-        {
-          "id": "step_clicked",
-          "value": 41686,
-          "label": "Clicked"
-        },
-        {
-          "id": "step_add_to_card",
-          "value": 37960,
-          "label": "Add To Card"
-        },
-        {
-          "id": "step_purchased",
-          "value": 32094,
-          "label": "Purchased"
-        }
-      ]
-
-
-    const MyResponsiveFunnel = ({ data, colorScheme, vertOrHor}) => (
-        <ResponsiveFunnel
-            data={data}
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-            direction={vertOrHor}
-            interpolation="smooth"
-            valueFormat=">-.4s"
-            colors={{ scheme: colorScheme }}
-            fillOpacity={0.95}
-            borderWidth={7}
-            labelColor={{
-                from: 'color',
-                modifiers: [
-                    [
-                        'darker',
-                        3
-                    ]
-                ]
-            }}
-            beforeSeparatorLength={100}
-            beforeSeparatorOffset={20}
-            afterSeparatorLength={100}
-            afterSeparatorOffset={20}
-            currentPartSizeExtension={10}
-            currentBorderWidth={40}
-            motionConfig="wobbly"
-        />
-    )
-
-    MyResponsiveFunnel.propTypes = {
-        data: PropTypes.object.isRequired,
-        colorScheme: PropTypes.string.isRequired,
-        vertOrHor:PropTypes.string.isRequired
-    } 
-
-    const formatSelectOptions = ({value, label, colors}) => (
-        <div style={{display: 'flex'}}>
-            <div style={{minWidth:'80px'}}>{label}</div>
-            <div style={{alignItems:'end'}}>
-                {
-                    colors.map( (colorValue) => {
-                        return(
-                            <span key={colorValue} style={{backgroundColor:colorValue}}>
-                                &nbsp;&nbsp;
-                            </span>
-                        )
-                    })
-                }
-            </div>
-        </div>
-    )
-
-    const handleChange = (selectedOption) => {
-        setColorScheme(selectedOption.value)
-    }
-
-    const CustomSelectOptions = () => (
-        <Select
-            formatOptionLabel={formatSelectOptions}
-            defaultValue={Object.values(SchemeOptions)[0]}
-            options={Object.values(SchemeOptions)}
-            onChange={handleChange}
-        />
-    )
-
+    const data01 = [
+        { x: 11.50, y: 12.99, name:"Index1" },
+        { x: 16.99, y: 14.59, name:"Index2" },
+        { x: 15.53, y: 12.28, name:"Index3"  },
+        { x: 14.53, y: 11.79, name:"Index4" },
+        { x: 13.22, y: 10.95, name:"Index5" },
+      ];
+    
     return(
         <>
-            <CCard>
-                <CCardHeader>
-                    <CRow>
-                        <CCol sm={6}>
-                        <h4>Funnel Graph</h4>
-                        </CCol>
-                        <CCol sm={3}>
-                            <CButtonGroup>
-                                {['horizontal', 'vertical'].map( (value) => (
-                                    <CButton 
-                                    color='outline-secondary'
-                                    active={value === vertOrHor}
-                                    onClick={() => setVertOrHor(value.toLowerCase())}
-                                    key={value}>
-                                        {value}
-                                    </CButton>
-                                ))}
-                            </CButtonGroup>
-                        </CCol>
-                        <CCol sm={3}>
-                            <CustomSelectOptions />
-                        </CCol>
-                    </CRow>                
-                </CCardHeader>
-                <CCardBody style={{height:'600px'}}>
-                    <MyResponsiveFunnel 
-                        colorScheme={colorScheme}
-                        vertOrHor={vertOrHor}
-                        data={funnelData} />
-                </CCardBody>    
-            </CCard>    
+        <CCard>
+            <CCardHeader>
+                <CRow>
+                    <CCol sm={6} style={{fontSize:13}}>
+                        <span>Index</span>
+                    </CCol>
+                </CRow>
+                
+            </CCardHeader>
+            <CCardBody>
+                <ResponsiveContainer width="90%" height={400}>
+                    <ScatterChart
+                      margin={{
+                        top: 20 ,
+                        right: 0,
+                        bottom: 20,
+                        left: 10,
+                      }}
+                    >
+                      <CartesianGrid />
+                      <XAxis type="number" dataKey="x" name="Risk" unit="%" style={{ fontSize: 12 }} >
+                        <Label value = "Risk" position ="bottom" dataKey="x" style={{ fontSize: 12 }} ></Label>
+                      </XAxis> 
+    
+                      <YAxis type="number" dataKey="y" name="Return" unit="%" style={{ fontSize: 12 }} >
+                        <Label value = "Return" offset={-10} angle="-90" position="left" dataKey="y" style={{ fontSize: 12 }} ></Label>
+                      </YAxis>
+    
+                      <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                      
+                      <Scatter name="2023" data={data01} fill="#8884d8" >
+                        <LabelList dataKey="name" position="left" angle={0} width={300} style={{fontSize: 12, fill:"grey" }} />
+                        {data01.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={"#8884d8"}>
+                              
+                          </Cell>
+                        ))}
+                      </Scatter>
+                    </ScatterChart>
+                </ResponsiveContainer>
+            </CCardBody>
+        </CCard>
         </>
     )
-
 }
 export default NivoFunnel;

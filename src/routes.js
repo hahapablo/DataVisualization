@@ -1,12 +1,20 @@
 import React from 'react'
 
+// Nivo
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const NivoBar = React.lazy(() => import('./views/nivo/NivoBar'))
 const NivoPie = React.lazy(() => import('./views/nivo/NivoPie'))
 const NivoBump = React.lazy(() => import('./views/nivo/NivoBump'))
 const NivoFunnel = React.lazy(() => import('./views/nivo/NivoFunnel'))
 const NivoBullet = React.lazy(() => import('./views/nivo/NivoBullet'))
+const NivoScatterPlot = React.lazy(() => import('./views/nivo/NivoScatterPlot'))
+// Design
+const DesignHutong = React.lazy(() => import('./views/design/DesignHutong'))
+const DesignElbe = React.lazy(() => import('./views/design/DesignElbe'))
+const DesignPanyu = React.lazy(() => import('./views/design/DesignPanyu'))
+const DesignOthers = React.lazy(() => import('./views/design/DesignOthers'))
 
+// 
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -59,11 +67,17 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/nivobar', name: 'Nivo Bar', element: NivoBar },
-  { path: '/nivopie', name: 'Nivo Pie', element: NivoPie },
-  { path: '/nivobump', name: 'Nivo Bump', element: NivoBump },
-  { path: '/nivofunnel', name: 'Nivo Funnel', element: NivoFunnel },
+  { path: '/nivobar', name: 'Graph 1', element: NivoBar },
+  { path: '/nivopie', name: 'Graph 2', element: NivoPie },
+  { path: '/nivobump', name: 'Graph 3', element: NivoBump },
+  { path: '/nivofunnel', name: 'Graph 4', element: NivoFunnel },
   { path: '/nivobullet', name: 'Nivo Bullet', element: NivoBullet },
+  { path: '/nivoscatterplot', name: 'Nivo Scatter Plot', element: NivoScatterPlot },
+  { path: '/designhutong', name: 'Design Hutong', element: DesignHutong },
+  { path: '/designelbe', name: 'Design Elbe', element: DesignElbe },
+  { path: '/designpanyu', name: 'Design Panyu', element: DesignPanyu },
+  { path: '/designothers', name: 'Design Others', element: DesignOthers },
+
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

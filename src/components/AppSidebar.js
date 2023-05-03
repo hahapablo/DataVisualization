@@ -2,10 +2,9 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
 
 import { AppSidebarNav } from './AppSidebarNav'
-import fcf from '../assets/brand/fcf.png'
+import longLogo from '../assets/brand/longLogo.png'
 
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
@@ -26,9 +25,10 @@ const AppSidebar = () => {
       onVisibleChange={(visible) => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
+      style ={{fontSize: 15}}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <img src={fcf} height={30} />
+        <img src={longLogo} height={40} />
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

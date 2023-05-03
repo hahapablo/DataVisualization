@@ -2,21 +2,13 @@ import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
   cilBarChart,
-  cilBell,
-  cilCalculator,
   cilChartPie,
-  cilCursor,
-  cilDrop,
-  cilNotes,
-  cilPencil,
-  cilPuzzle,
   cilSpeedometer,
-  cilStar,
   cilChartLine,
   cilLineWeight,
-  cilClearAll,
+
 } from '@coreui/icons'
-import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
+import { CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
   {
@@ -27,47 +19,31 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Graphs',
+    name: 'Index',
   },
   {
     component: CNavItem,
-    name: 'Bar',
+    name: 'Graph 1',
     to: '/nivobar',
     icon: <CIcon icon={cilBarChart} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Pie',
+    name: 'Graph 2',
     to: '/nivopie',
     icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Bump',
+    name: 'Graph 3',
     to: '/nivobump',
     icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Funnel',
+    name: 'Graph 4',
     to: '/nivofunnel',
     icon: <CIcon icon={cilLineWeight} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Bullet',
-    to: '/nivobullet',
-    icon: <CIcon icon={cilClearAll} customClassName="nav-icon" />,
-  },
-
-  {
-    component: CNavTitle,
-    name: 'Architecture',
-  },
-
-  {
-    component: CNavTitle,
-    name: 'Urban Design',
   },
 ]
 
